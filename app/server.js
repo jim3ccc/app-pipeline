@@ -24,6 +24,7 @@ app.get('/profile-picture', function (req, res) {
 let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 
 // use when starting application as docker container
+// syntax: mongodb://<mongoUsername>:<mongoPassword>@<mongoContainerName>
 let mongoUrlDocker = "mongodb://admin:password@mongo";
 
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
