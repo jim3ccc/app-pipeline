@@ -16,7 +16,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
-      - mongo-data:data/db        # map host mongo-data dir to data/db dir in mongo container
+      - mongo-data:/data/db        # map host mongo-data dir to data/db dir in mongo container
   mongo-express:
     image: mongo-express
     restart: always
