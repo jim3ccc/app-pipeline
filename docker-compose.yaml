@@ -1,0 +1,35 @@
+version: "3.9"                    # optional since v1.27.0
+services:
+  my-app:
+    image: docker-hub/my-app:1.0
+    ports:
+      - "3000:3000"               # Forward host port 3000 to container port 3000
+    depends_on:                   # Specifies the order docker-compose starts the services 
+      - mongo                     # Here mongo, mongo-express will be started before my-app
+			- mongo-express
+  mongo:
+    image: mongo
+		restart: always
+		ports:
+			- "27017:27017"             # The mongo server in the image listens on the standard MongoDB port, 27017
+		environment:                  # Define mongodb server's username and password
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+		volumes:
+			- mongo-data:data/db        # map host mongo-data dir to data/db dir in mongo container
+	mongo-express:
+		image: mongo-express
+		restart: always
+		ports:
+			- "8081:8081"
+		depends_on:
+			- mongo
+		environment:                  # Documentation on env variables can be found on mongo-express's docker hub page
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+			ME_CONFIG_MONGODB_SERVER: mongo
+			ME_CONFIG_MONGODB_PORT: 27017
+
+volumes:
+	mongo-data:
+		driver: local

@@ -1,0 +1,15 @@
+
+version: '3.8'
+services:
+  jenkins:
+    container_name: jenkins
+    restart: always
+    image: jenkins/jenkins:lts
+    ports:
+      - 8080:8080 # forwarding host port 8080 to container port 8080
+    volumes:
+      - jenkins-home:/var/jenkins_home # jenkins-home volume will be created if it doesn't exist on host machine.
+                                       # /var/jenkins_home is the default path for Jenkins data in a container
+volumes:
+  jenkins-home:
+    driver: local # local means the volume jenkins-home is created on the same Docker host where you run your container
