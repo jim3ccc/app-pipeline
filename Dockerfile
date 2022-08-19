@@ -5,7 +5,7 @@ FROM node:13-alpine
 #     MONGO_DB_PWD=password
 
 # create a directory for the app
-RUN mkdi -p /home/app
+RUN mkdir -p /home/app
 
 # copy our app directory, relative to location of Dockerfile), to /home/app inside the container filesystem
 COPY ./app /home/app
