@@ -30,7 +30,7 @@ Step 5: access the nodejs application from browser
 
 #### To build a docker image from the application
 
-    docker build -t my-app:1.0 .       
+    docker build -t my-app:latest .       
     
 The dot "." at the end of the command denotes location of the Dockerfile.
 
@@ -46,6 +46,6 @@ Step 2: run ngrok to expose Jenkins container
 
 Step 3: update Jenkins webhook url with ngrok forward url
 
-Step 4: create empty commit and push to Github
+Step 4: create empty commit and push to Github should trigger Jenkins job
     
 
